@@ -28,7 +28,6 @@ router.get('/generate', async (req, res) => {
 });
 // Generate payroll
 router.post('/', async (req, res) => {
-  console.log(req.body)
   const payroll = new Payroll({
     employee: req.body.employeeId,
     period: {
@@ -160,9 +159,10 @@ router.get('/payslip/:recordId', async (req, res) => {
       res.send(pdfData);
     });
 
+
     const record = await Payroll.findById(recordId).populate('employee')
 
-    doc.fontSize(20).text(`Payroll for ${record.month.toLocaleString('default', { month: 'long' })}`, 100, 100);
+    // doc.fontSize(20).text(`Payroll for ${record.month.toLocaleString('default', { month: 'long' })}`, 100, 100);
     doc.fontSize(14).text(`Employee: ${record.employee.name}`, 100, 150);
     doc.fontSize(14).text(`Days Worked: ${record.daysWorked}`, 100, 170);
     doc.fontSize(14).text(`Base Salary: ${record.baseSalary}`, 100, 190);
