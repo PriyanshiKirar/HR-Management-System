@@ -1,0 +1,41 @@
+<%- include('../partials/Header.ejs') %>
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-4">Attendance Records</h1>
+    <a href="/attendance/record"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">
+      Record Attendance
+    </a>
+    <table class="w-full bg-white shadow-md rounded mb-4">
+      <thead>
+        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Employee</th>
+          <th class="py-3 px-6 text-left">Date</th>
+          <th class="py-3 px-6 text-left">Check In</th>
+          <th class="py-3 px-6 text-left">Check Out</th>
+          <th class="py-3 px-6 text-left">Overtime</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 text-sm font-light">
+        <% attendanceRecords.forEach(record=> { %>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="py-3 px-6 text-left whitespace-nowrap">
+              <%= record.employee ? record.employee.name : 'N/A' %>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <%= record.date.toLocaleDateString() %>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <%= record.checkIn ? record.checkIn.toLocaleTimeString() : 'N/A' %>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <%= record.checkOut ? record.checkOut.toLocaleTimeString() : 'N/A' %>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <%= record.overtime || 0 %> hours
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </div>

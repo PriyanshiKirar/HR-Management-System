@@ -1,0 +1,23 @@
+<%- include('./partials/Header.ejs') %>
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-8 text-center">Welcome to HR Management System</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <a href="/employees"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-lg text-center transition duration-300">
+        <h2 class="text-xl sm:text-2xl mb-2">Employees</h2>
+        <p class="text-sm sm:text-base">Manage employee information</p>
+      </a>
+      <a href="/attendance"
+        class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-center transition duration-300">
+        <h2 class="text-xl sm:text-2xl mb-2">Attendance</h2>
+        <p class="text-sm sm:text-base">Track employee attendance</p>
+      </a>
+      <a href="/payroll"
+        class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-6 rounded-lg text-center transition duration-300">
+        <h2 class="text-xl sm:text-2xl mb-2">Payroll</h2>
+        <p class="text-sm sm:text-base">Manage employee payroll</p>
+      </a>
+    </div>
+  </div>
+  <%- include('./partials/Footer.ejs') %>

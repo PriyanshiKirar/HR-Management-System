@@ -1,0 +1,75 @@
+<%- include('../partials/Header.ejs') %>
+
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Generate Payroll</h1>
+  <form action="/payroll" method="POST" class="bg-white shadow-md rounded px-4 sm:px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="employeeId">
+        Employee
+      </label>
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="employeeId" name="employeeId" required>
+        <option value="">Select an employee</option>
+        <% employees.forEach(employee => { %>
+          <option value="<%= employee._id %>"><%= employee.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="periodStart">
+        Period Start
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="periodStart" type="date" name="periodStart" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="periodEnd">
+        Period End
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="periodEnd" type="date" name="periodEnd" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="baseSalary">
+        Base Salary
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="baseSalary" type="number" name="baseSalary" step="0.01" min="0" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="overtime">
+        Overtime
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="overtime" type="number" name="overtime" step="0.01" min="0" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="deductions">
+        Deductions
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="deductions" type="number" name="deductions" step="0.01" min="0" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="taxAmount">
+        Tax Amount
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="taxAmount" type="number" name="taxAmount" step="0.01" min="0" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="netSalary">
+        Net Salary
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="netSalary" type="number" name="netSalary" step="0.01" min="0" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
+        Status
+      </label>
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="status" name="status" required>
+        <option value="pending">Pending</option>
+        <option value="processed">Processed</option>
+        <option value="paid">Paid</option>
+      </select>
+    </div>
+    <div class="flex items-center justify-between">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        Generate Payroll
+      </button>
+    </div>
+  </form>
+</div>

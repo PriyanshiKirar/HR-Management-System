@@ -1,0 +1,58 @@
+<%- include('../partials/Header.ejs') %>
+
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Payroll Records</h1>
+  <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+    <a href="/payroll/generate" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">
+      Generate Payroll
+    </a>
+    <a href="/payroll/calculate" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block">
+      Calculate Salaries
+    </a>
+    <a href="/payroll/payslips" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded inline-block">
+      Generate Payslips
+    </a>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded mb-4">
+      <thead>
+        <tr class="bg-gray-200 text-gray-600 uppercase text-xs md:text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Employee</th>
+          <th class="py-3 px-6 text-left">Period</th>
+          <th class="py-3 px-6 text-left">Base Salary</th>
+          <th class="py-3 px-6 text-left">Overtime</th>
+          <th class="py-3 px-6 text-left">Commission</th>
+          <th class="py-3 px-6 text-left">Gross Salary</th>
+          <th class="py-3 px-6 text-left">Tax</th>
+          <th class="py-3 px-6 text-left">Other Deductions</th>
+          <th class="py-3 px-6 text-left">Net Salary</th>
+          <th class="py-3 px-6 text-left">Status</th>
+          <th class="py-3 px-6 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 text-sm font-light">
+        <% payrollRecords.forEach(record => { %>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="py-3 px-6 text-left">
+              <%= record.employee ? record.employee.name : 'N/A' %>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <%= record.month ? record.month.toLocaleDateString() : 'N/A' %>
+            </td>
+            <td class="py-3 px-6 text-left">$<%= (record.baseSalary || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left">$<%= (record.overtimePay || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left">$<%= (record.commission || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left">$<%= (record.grossSalary || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left">$<%= (record.taxAmount || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left">$<%= (record.otherDeductions || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left">$<%= (record.netSalary || 0).toFixed(2) %></td>
+            <td class="py-3 px-6 text-left"><%= record.status || 'N/A' %></td>
+            <td class="py-3 px-6 text-left">
+              <a href="/payroll/payslip/<%= record._id %>" class="text-blue-600 hover:text-blue-900">View Payslip</a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

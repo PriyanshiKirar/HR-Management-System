@@ -1,0 +1,77 @@
+<%- include('../partials/Header.ejs') %>
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Record Attendance</h1>
+    <form action="/attendance" method="POST" class="bg-white shadow-md rounded px-4 sm:px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="employeeId">
+          Employee
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="employeeId" name="employeeId" required>
+          <option value="">Select an employee</option>
+          <% employees.forEach(employee=> { %>
+            <option value="<%= employee._id %>">
+              <%= employee.name %>
+            </option>
+            <% }); %>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
+          Date
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="date" type="date" name="date" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="checkIn">
+          Check In Time
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="checkIn" type="time" name="checkIn" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="checkOut">
+          Check Out Time
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="checkOut" type="time" name="checkOut">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="overtime">
+          Overtime (hours)
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="overtime" type="number" name="overtime" step="0.5" min="0">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="latitude">
+          Latitude
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="latitude" type="number" name="latitude" step="any" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="longitude">
+          Longitude
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="longitude" type="number" name="longitude" step="any" required>
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit">
+          Record Attendance
+        </button>
+      </div>
+    </form>
+  </div>

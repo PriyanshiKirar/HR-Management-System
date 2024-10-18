@@ -1,0 +1,45 @@
+<%- include('../partials/Header.ejs') %>
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Employee List</h1>
+    <a href="/employees/create"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">
+      Add New Employee
+    </a>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow-md rounded mb-4">
+        <thead>
+          <tr class="bg-gray-200 text-gray-600 uppercase text-xs md:text-sm leading-normal">
+            <th class="py-3 px-6 text-left">Name</th>
+            <th class="py-3 px-6 text-left">Email</th>
+            <th class="py-3 px-6 text-left">Job Role</th>
+            <th class="py-3 px-6 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+          <% employees.forEach(employee=> { %>
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="py-3 px-6 text-left whitespace-nowrap">
+                <%= employee.name %>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <%= employee.email %>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <%= employee.jobRole %>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <a href="/employees/<%= employee._id %>/edit" class="text-blue-600 hover:text-blue-900 mr-2">Edit</a>
+                <a href="/employees/<%= employee._id %>" class="text-green-600 hover:text-green-900">View</a>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-4">
+      <a href="/auth/upload-documents" class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+        Upload Documents
+      </a>
+    </div>
+  </div>
