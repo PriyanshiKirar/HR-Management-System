@@ -11,7 +11,7 @@ const homeRoutes = require('./src/routes/homeRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 const flash = require('connect-flash');
 const { requireAuth } = require('./src/middleware/authMiddleware');
-
+require('dotenv').config({path:"./.env"});
 const app = express();
 
 // Connect to MongoDB

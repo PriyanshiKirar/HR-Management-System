@@ -8,11 +8,9 @@ const payrollSchema = new mongoose.Schema({
   },
   month: {
     type: Date,
-    required: true
   },
   daysWorked: {
     type: Number,
-    required: true
   },
   baseSalary: {
     type: Number,

@@ -26,9 +26,9 @@ router.get('/generate', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 // Generate payroll
 router.post('/', async (req, res) => {
+  console.log(req.body)
   const payroll = new Payroll({
     employee: req.body.employeeId,
     period: {
